@@ -23,13 +23,9 @@
                 <div class="form-group has-feedback">
 					<div class="form-group">
 						<select class="form-control" name="gender">
-							<option>Jenis Kelamin</option>
 							<option value="1">Laki-laki</option>
 							<option value="2">Perempuan</option>
 						</select>
-						<span class='text-danger'>
-							<?php echo form_error('gender'); ?>
-						</span>
 					</div>
 				</div>
 				<div class="form-group has-feedback">
@@ -42,7 +38,7 @@
                 </div>
 				<div class="form-group has-feedback">
 					<div class="form-group">
-						<textarea class="form-control" rows="3" placeholder="Alamat" name="address"></textarea>
+						<textarea class="form-control" rows="3" placeholder="Alamat" name="address"><?php echo set_value('address'); ?></textarea>
 					</div>
                     <span class='text-danger'>
                         <?php echo form_error('address'); ?>

@@ -90,10 +90,93 @@ class Auths extends Public_Controller {
 	}
 	
 	public function registration() {
-		$this->load->view('includes/auth/header');
-		$this->load->view('pages/auth/registration');
-		$this->load->view('includes/auth/footer');
-		// echo "member-".date('YmdHis');
+
+		// Start Validation
+        $this->form_validation->set_rules(
+            'name',
+            'Nama',
+            'required',
+            array(
+                'required' => '*) Masukkan <b>Nama</b> Anda'
+            )
+        );
+		$this->form_validation->set_rules(
+            'username',
+            'Username',
+            'required|trim|is_unique[users.username]', 
+            array(
+                'required' => '*) Masukkan <b>Username</b> Anda', 
+                'trim' => '*) Masukkan <b>Username</b> Dengan Benar',
+                'is_unique' => '*) <b>Username</b> Telah Digunakan'
+            )
+        );
+		$this->form_validation->set_rules(
+            'email',
+            'Email',
+            'required|valid_email|is_unique[users.email]', 
+            array(
+                'required' => '*) Masukkan <b>Email</b> Anda', 
+                'valid_email' => '*) Masukkan Alamat <b>Email</b> Dengan Benar',
+                'is_unique' => '*) Alamat <b>Email</b> Telah Digunakan'
+            )
+		);
+		$this->form_validation->set_rules(
+            'phone',
+            'Phone',
+            'required',
+            array(
+                'required' => '*) Masukkan <b>Nomor Handphone</b> Anda'
+            )
+        );
+		$this->form_validation->set_rules(
+            'address',
+            'Alamat',
+            'required',
+            array(
+                'required' => '*) Masukkan <b>Alamat</b> Anda'
+            )
+        );
+        $this->form_validation->set_rules(
+            'password', 
+            'Password', 
+            'required|min_length[8]',
+            array(
+                'required' => '*) Masukkan <b>Password</b> Anda', 
+                'min_length' => '*) <b>Password</b> Minimal 8 Karakter'            
+            )
+        );
+        $this->form_validation->set_rules(
+            'password-confirm',
+            'Ulang Password', 
+            'required|matches[password]',
+            array(
+                'required' => '*) Masukkan <b>Ulang Password</b> Anda', 
+                'matches' => '*) <b>Password</b> Tidak Valid'
+            )
+        );
+		// End Validation
+
+		if ($this->form_validation->run() === TRUE) {
+			$data['uid'] = "member-".date('YmdHis');
+            $data['username'] = $this->input->post('username');
+            $data['email'] = $this->input->post('email');
+            $data['name'] = $this->input->post('name');
+            $data['password'] = sha1(md5($this->input->post('password')));
+            $data['gender'] = $this->input->post('gender');
+            $data['address'] = $this->input->post('address');
+            $data['phone'] = $this->input->post('phone');
+			$data['role'] = User::MEMBER_ROLE;
+			$data['joined_since'] = date('Y-m-d H:i:s');;
+			
+			$this->user->insert($data);
+            $this->session->set_flashdata('alert', $this->alert->set_alert(Alert::SUCCESS, "Registrasi Berhasil, Silahkan Masuk"));
+            redirect('/', 'refresh');
+		} else {
+			$this->load->view('includes/auth/header');
+			$this->load->view('pages/auth/registration');
+			$this->load->view('includes/auth/footer');
+		}
+
 	}
 
 	public function logout() {
