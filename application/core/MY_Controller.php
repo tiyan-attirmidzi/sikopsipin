@@ -21,7 +21,7 @@ class User_Controller extends MY_Controller {
         if(!$this->session->userdata('id'))
         {
             $this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER,  "Anda Harus Login"));
-            redirect(site_url('/login'));
+            redirect(site_url());
   	    }
     }
 
@@ -35,7 +35,7 @@ class Member_Controller extends User_Controller {
         if($this->session->userdata('role') != 2)
         {
     		$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, "Anda Tidak Berhak Masuk Kehalaman Ini"));
-    		redirect(site_url('/login'));
+    		redirect(site_url());
         }
     }
 
@@ -49,7 +49,7 @@ class Admin_Controller extends User_Controller {
         if($this->session->userdata('role') != 1)
         {
     		$this->session->set_flashdata('alert', $this->alert->set_alert( Alert::DANGER, "Anda Tidak Berhak Masuk Kehalaman Ini"));
-    		redirect(site_url('/login'));
+    		redirect(site_url());
         }
     }
 
