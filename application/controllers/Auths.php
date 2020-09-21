@@ -76,7 +76,8 @@ class Auths extends Public_Controller {
             }
             else
             {
-                $this->session->set_flashdata('alert', $this->alert->set_alert(Alert::DANGER, "Login Gagal, Username/Email dan Password Tidak Valid"));
+				$this->session->set_flashdata('alert', $this->alert->sweetAlert(Alert::ERROR, "Login Gagal!", "Username/Email dan Password Tidak Valid", false));
+				exit;
                 redirect('/', 'refresh');
             }
         }

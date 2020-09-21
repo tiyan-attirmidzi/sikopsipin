@@ -3,10 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // library plugin req boostrap
 class Alert  {
-	const DANGER                = 0;
-	const SUCCESS               = 1;
-	const WARNING           	= 2;
-	const TEAL          		= 3;
+	const DANGER = 0;
+	const SUCCESS = 1;
+	const WARNING = 2;
+	const TEAL = 3;
+	const ERROR = 4;
 
 	public function __construct(  )
 	{
@@ -69,6 +70,29 @@ class Alert  {
 					".$message."
 				</div>
 			</div>
+		";
+	}
+
+	public function sweetAlert($mode, $title, $message, $button)
+	{
+		$modes = [
+			["icon" => ""],
+			["icon" => "success"],
+			["icon" => "warning"],
+			["icon" => ""],
+			["icon" => "error"],
+		];
+
+		return "
+			<script>
+				swal({
+					title: $title,
+					text: $message,
+					icon: $modes[$mode]['icon'],
+					timer: 3000,
+					button: $button
+				});
+			</script>
 		";
 	}
 	

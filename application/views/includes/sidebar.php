@@ -7,7 +7,7 @@
                 <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p><?php echo $this->session->userdata("full_name"); ?></p>
+                <p><?php echo $this->session->userdata("name"); ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> <?php echo $this->session->userdata("email"); ?></a>
             </div>
         </div>
@@ -19,24 +19,24 @@
 						<i class="fa fa-dashboard"></i> <span>Beranda</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(2)=='law'){echo "active";}?>">
-					<a href="<?php echo base_url('admin/mahasiswa'); ?>">
-						<i class="fa fa-user"></i> <span>Mahasiswa</span>
+				<li class="<?php if($this->uri->segment(2)=='members'){echo "active";}?>">
+					<a href="<?php echo base_url('admin/members'); ?>">
+						<i class="fa fa-user"></i> <span>Anggota</span>
 					</a>
 				</li>
 				<li class="<?php if($this->uri->segment(3)=='request'){echo "active";}?>">
 					<a href="<?php echo base_url('admin/schedules/request'); ?>">
-						<i class="fa fa-bullhorn"></i> <span>Pengajuan Jadwal</span>
+						<i class="fa fa-money"></i> <span>Simpanan</span>
 					</a>
 				</li>
 				<li class="<?php if($this->uri->segment(2)=='schedules' && $this->uri->segment(3)==''){echo "active";}?>">
 					<a href="<?php echo base_url('admin/schedules'); ?>">
-						<i class="fa fa-calendar-check-o"></i> <span>Jadwal</span>
+						<i class="fa fa-credit-card"></i> <span>Pinjaman</span>
 					</a>
 				</li>
 				<li class="<?php if($this->uri->segment(3)=='history'){echo "active";}?>">
 					<a href="<?php echo base_url('admin/schedule/history'); ?>">
-						<i class="fa fa-history"></i> <span>Riwayat</span>
+						<i class="fa fa-dollar"></i> <span>Pembayaran</span>
 					</a>
 				</li>
 			<?php } else { ?>

@@ -45,27 +45,33 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>NIM</th>
+                                    <th>Nomor Anggota</th>
+									<th>Username</th>
                                     <th>Nama Lengkap</th>
-									<th>Jenis Kelamin</th>
+                                    <th>Email</th>
+                                    <th>Jenis Kelamin</th>
                                     <th>Nomor Handphone</th>
+                                    <th>Bergabung Sejak</th>
                                     <th>Pilihan</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1; foreach ($collageStudents as $collageStudent) { ?>
+                                <?php $no = 1; foreach ($members as $member) { ?>
                                     <tr>
                                         <td><?php echo $no; ?></td>
-                                        <td><?php echo $collageStudent->uid; ?></td>
-                                        <td><?php echo $collageStudent->first_name." ".$collageStudent->last_name; ?></td>
+                                        <td><?php echo $member->uid; ?></td>
+                                        <td><?php echo $member->username; ?></td>
+                                        <td><?php echo $member->name; ?></td>
+                                        <td><?php echo $member->email; ?></td>
                                         <td>
-											<span class="label label-<?php echo $genders[$collageStudent->gender]['label']; ?>"><?php echo $genders[$collageStudent->gender]['name']; ?></span>
+											<span class="label label-<?php echo $genders[$member->gender]['label']; ?>"><?php echo $genders[$member->gender]['name']; ?></span>
                                         </td>
-										<td><?php echo $collageStudent->phone; ?></td>
+										<td><?php echo $member->phone; ?></td>
+										<td><?php echo $member->joined_since; ?></td>
                                         <td style="text-align:center">
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete-<?php echo $collageStudent->id; ?>">Hapus</button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete-<?php echo $member->id; ?>">Hapus</button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="modal-delete-<?php echo $collageStudent->id; ?>">
+                                            <div class="modal fade" id="modal-delete-<?php echo $member->id; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -74,96 +80,37 @@
                                                             <h4 class="modal-title">Hapus Data</h4>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <p>Apakah anda yakin menghapus Mahasiswa dengan NIM <b><?php echo $collageStudent->uid; ?></b> ?</p>
+                                                            <p>Apakah anda yakin menghapus Mahasiswa dengan NIM <b><?php echo $member->uid; ?></b> ?</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
-                                                            <button type="button" class="btn btn-danger" onclick="location.href='<?php echo base_url($pageCurrent.'/destroy/'.$collageStudent->id); ?>'">Hapus</button>
+                                                            <button type="button" class="btn btn-danger" onclick="location.href='<?php echo base_url($pageCurrent.'/destroy/'.$member->id); ?>'">Hapus</button>
                                                         </div>
                                                     </div>
-                                                    <!-- /.modal-content -->
                                                 </div>
-                                                <!-- /.modal-dialog -->
                                             </div>
-                                            <!-- /.Modal -->
                                         </td>
                                     </tr>
                                 <?php $no++; } ?>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>No</th>
-									<th>NIM</th>
+									<th>No</th>
+                                    <th>Nomor Anggota</th>
+									<th>Username</th>
                                     <th>Nama Lengkap</th>
+                                    <th>Email</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Nomor Handphone</th>
+                                    <th>Bergabung Sejak</th>
                                     <th>Pilihan</th>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /.box -->
             </div>
-            <!-- /.col -->
         </div>
-		<!-- /.row -->
-		
-		<!-- Modal Add -->
-		<div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="modalAddLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="modalAddLabel">Tambah Mahasiswa</h4>
-					</div>
-					<form action="<?php echo base_url().'admin/mahasiswa/create'; ?>" method="post">
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="first_name">Nama Depan</label>
-								<input type="text" class="form-control" name="first_name" id="first_name" placeholder="Masukkan Nama Depan" required>
-							</div>
-							<div class="form-group">
-								<label for="last_name">Nama Belakang</label>
-								<input type="text" class="form-control" name="last_name" id="last_name" placeholder="Masukkan Nama Belakang" required>
-							</div>
-							<div class="form-group">
-								<label for="select-gender" class="col-form-label">Jenis Kelamin</label>
-								<select id="gender" name="gender" class="form-control">
-									<option value="0">Perempuan</option>
-									<option value="1">Laki-laki</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="nim">NIM</label>
-								<input type="text" class="form-control" name="nim" id="nim" placeholder="Masukkan NIM" required>
-							</div>
-							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email" required>
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label>
-								<input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password" required>
-							</div>
-							<div class="form-group">
-								<label for="phone">Nomor Handphone</label>
-								<input type="text" class="form-control" name="phone" id="phone" placeholder="Masukkan Nomor Handphone" required>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        					<button type="submit" class="btn btn-primary">Simpan</button>
-						</div>
-					</form>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
 
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->

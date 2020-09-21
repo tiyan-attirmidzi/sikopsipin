@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <title><?php echo ucwords($this->uri->segment(1)); ?> | SIPENUS</title>
+    <title><?php echo ucwords($this->uri->segment(1)); ?> | SIKOPSIPIN</title>
 
     <!-- Start Cascading Style Sheets -->
     <!-- Bootstrap 3.3.7 -->
@@ -35,15 +35,9 @@
     <!-- End Cascading Style Sheets -->
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-    <!-- Icon -->
-    <link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>assets/uploads/about/<?php echo "sultra.png"; ?>"/>
-
-    <!-- Javascript -->
-    <!-- CKEDITOR -->
-    <script type="text/javascript" src="<?php echo base_url();?>assets/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>assets/ckeditor/styles.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css" /> -->
+	
 
     <style>
         .center {

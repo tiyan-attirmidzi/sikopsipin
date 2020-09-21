@@ -17,12 +17,12 @@
 
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-12 col-xs-12">
                 <!-- small box -->
-                <div class="small-box bg-aqua">
+                <div class="small-box bg-red">
                     <div class="inner">
-                        <h3><?php echo $users; ?></h3>
-                        <p>Mahasiswa</p>
+                        <h3><?php echo $members; ?></h3>
+                        <p>Anggota</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-user"></i>
@@ -35,11 +35,11 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3><?php echo $users; ?></h3>
-                        <p>Jadwal</p>
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Simpanan</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-calendar-check-o"></i>
+                        <i class="fa fa-money"></i>
                     </div>
                     <a href="<?php echo base_url('admin/schedule'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -49,25 +49,205 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3><?php echo $users; ?></h3>
-                        <p>Pengajuan Jadwal</p>
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Pinjaman</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-upload"></i>
+                        <i class="fa fa-credit-card"></i>
                     </div>
                     <a href="<?php echo base_url('admin/schedule/submission'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-12 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Total Pembayaran</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-dollar"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule/history'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3><?php echo $users; ?></h3>
-                        <p>Riwayat</p>
+                        <h3><?php echo $members; ?></h3>
+                        <p>Anggota</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-history"></i>
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/mahasiswa'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Simpanan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-money"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Pinjaman</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule/submission'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-12 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Total Pembayaran</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-dollar"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule/history'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Anggota</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/mahasiswa'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Simpanan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-money"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Pinjaman</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule/submission'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-12 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Total Pembayaran</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-dollar"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule/history'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-12 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Anggota</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/mahasiswa'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Simpanan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-money"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-6 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Jumlah Pinjaman</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/schedule/submission'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-12 col-xs-12">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3><?php echo $members; ?></h3>
+                        <p>Total Pembayaran</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-dollar"></i>
                     </div>
                     <a href="<?php echo base_url('admin/schedule/history'); ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
