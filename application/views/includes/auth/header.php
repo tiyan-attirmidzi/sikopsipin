@@ -30,9 +30,3 @@
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Masukkan Data Diri Anda</p>
-
-            <?php
-                if($this->session->flashdata('alert')) {
-                    echo $this->session->flashdata('alert');
-                }
-            ?>

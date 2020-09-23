@@ -23,8 +23,8 @@
                 <div class="form-group has-feedback">
 					<div class="form-group">
 						<select class="form-control" name="gender">
-							<option value="1">Laki-laki</option>
-							<option value="2">Perempuan</option>
+							<option value="0">Laki-laki</option>
+							<option value="1">Perempuan</option>
 						</select>
 					</div>
 				</div>

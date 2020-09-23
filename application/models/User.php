@@ -28,7 +28,7 @@ class User extends CI_Model {
         return ($this->db->affected_rows() != 1) ? false : true;
 	}
 
-    public function edit($id, $data){
+    public function update($id, $data){
         //run Query to update data
         if(isset($data[$this->id]))unset($data[$this->id]);
         $query = $this->db->where('id', $id)->update(

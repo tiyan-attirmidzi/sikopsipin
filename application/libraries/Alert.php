@@ -75,25 +75,26 @@ class Alert  {
 
 	public function sweetAlert($mode, $title, $message, $button)
 	{
-		$modes = [
-			["icon" => ""],
-			["icon" => "success"],
-			["icon" => "warning"],
-			["icon" => ""],
-			["icon" => "error"],
-		];
-
+		$modes = array(
+			array("icon" => ""),
+			array("icon" => "success"),
+			array("icon" => "warning"),
+			array("icon" => ""),
+			array("icon" => "error"),
+		);
+		
 		return "
 			<script>
 				swal({
-					title: $title,
-					text: $message,
-					icon: $modes[$mode]['icon'],
-					timer: 3000,
-					button: $button
+					title: '{$title}',
+					text: '{$message}',
+					icon: '{$modes[$mode]["icon"]}',
+					timer: 4000,
+					button: {$button},
 				});
 			</script>
 		";
+		
 	}
 	
 }

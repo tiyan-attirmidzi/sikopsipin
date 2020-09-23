@@ -11,11 +11,6 @@ class Auths extends Public_Controller {
                 'user',
             )
         );
-        $this->load->library(
-            array(
-                'form_validation'
-            )
-        );
     }
 
 	public function index()	{
@@ -76,8 +71,7 @@ class Auths extends Public_Controller {
             }
             else
             {
-				$this->session->set_flashdata('alert', $this->alert->sweetAlert(Alert::ERROR, "Login Gagal!", "Username/Email dan Password Tidak Valid", false));
-				exit;
+				$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Login Gagal!", "Username/Email dan Password Tidak Valid", "false"));
                 redirect('/', 'refresh');
             }
         }

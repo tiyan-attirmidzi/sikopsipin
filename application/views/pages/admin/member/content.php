@@ -26,7 +26,7 @@
                                     <button type="button" class="btn btn-reload" onclick="location.href='<?php echo base_url($pageCurrent); ?>'"><i class="fa fa-refresh"></i> Refresh</button>
                                 </div>
                                 <div class="input-group-btn" style="padding-left: 15px;">
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i> Tambah</button>
+                                    <button type="button" class="btn btn-primary" onclick="location.href='<?php echo base_url($pageCurrent); ?>/insert'"><i class="fa fa-plus"></i> Tambah</button>
                                 </div>
                             </div>                            
                         </div>
@@ -57,7 +57,7 @@
                             </thead>
                             <tbody>
                                 <?php $no = 1; foreach ($members as $member) { ?>
-                                    <tr>
+                                    <tr id="<?php echo $member->id; ?>">
                                         <td><?php echo $no; ?></td>
                                         <td><?php echo $member->uid; ?></td>
                                         <td><?php echo $member->username; ?></td>
@@ -69,26 +69,9 @@
 										<td><?php echo $member->phone; ?></td>
 										<td><?php echo $member->joined_since; ?></td>
                                         <td style="text-align:center">
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete-<?php echo $member->id; ?>">Hapus</button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="modal-delete-<?php echo $member->id; ?>">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title">Hapus Data</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Apakah anda yakin menghapus Mahasiswa dengan NIM <b><?php echo $member->uid; ?></b> ?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Batal</button>
-                                                            <button type="button" class="btn btn-danger" onclick="location.href='<?php echo base_url($pageCurrent.'/destroy/'.$member->id); ?>'">Hapus</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <button type="button" class="btn btn-success btn-sm" onclick="location.href='<?php echo base_url($pageCurrent.'/update/'.$member->id); ?>'">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm btn-delete">Hapus</button>
+                                            <!-- <a href="<?php echo base_url($pageCurrent.'/delete/'.$member->id); ?>" class="btn btn-danger btn-sm btn-delete">Hapus</a> -->
                                         </td>
                                     </tr>
                                 <?php $no++; } ?>

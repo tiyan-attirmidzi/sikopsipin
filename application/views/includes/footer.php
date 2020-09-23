@@ -11,11 +11,6 @@
 
     </div>
     <!-- ./wrapper -->
-
-    <!-- Start Javascript Resource -->
-    <script>
-        var ckeditor = CKEDITOR.replace('ckeditor');
-    </script>
     <!-- jQuery 3 -->
     <script src="<?php echo base_url(); ?>assets/dashboard/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -37,34 +32,63 @@
     <script src="<?php echo base_url(); ?>assets/dashboard/dist/js/adminlte.min.js"></script>
 	<!-- End Javascript Resource -->
 	
-	<!-- Javascript -->
+	<!-- Sweet Alert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <?php
+        if($this->session->flashdata('alertSweet')) {
+            echo $this->session->flashdata('alertSweet');
+        }
+    ?>
+
+    <?php if ($jsConfirmDelete != '') { ?>
+        <script>
+            $(document).ready(function(){
+                $('.btn-delete').click(function(e){
+                    e.preventDefault();
+                    var id = $(this).parents("tr").attr("id");
+                    swal({
+                        title: 'Anda yakin menghapus?',
+                        text: 'Data ini akan dihapus secara permanen',
+                        icon: 'warning',
+                        buttons: ["Batal", "Ya"],
+                    }).then(function (e) {
+                        $.ajax({
+                            type: "DELETE",
+                            url: "<?php echo base_url($pageCurrent."/delete/"); ?>" + id,
+                            data: {id:id},
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function (e) {
+                                // console.log(e);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+    <?php } ?>
 	
 	<script>
 		// swal("Cancelled", "Your imaginary file is safe :)", "error");
-		swal({
-			title: "Good job!",
-			text: "You clicked the button!",
-			icon: "info",
-			timer: 3000,
-			button: false
-		});
 	</script>
 
 
-    <!-- page script -->
-    <script>
-    $(function () {
-        $('#data-table').DataTable({
-        'paging'      : true,
-        'lengthChange': true,
-        'searching'   : true,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : true
-        })
-    })
-    </script>
+    <?php if ($jsConfirmDelete != '') { ?>
+        <script>
+            $(document).ready(function () {
+                $('#data-table').DataTable({
+                    'paging'      : true,
+                    'lengthChange': true,
+                    'searching'   : true,
+                    'ordering'    : true,
+                    'info'        : true,
+                    'autoWidth'   : true
+                })
+            })
+        </script>
+    <?php } ?>
     
 </body>
 </html>
