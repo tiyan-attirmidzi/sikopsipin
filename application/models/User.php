@@ -4,7 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Model {
 
 	const ADMIN_ROLE = 1;
-	const MEMBER_ROLE = 2;
+    const MEMBER_ROLE = 2;
+    const MALE = 0;
+    const FEMALE = 1;
     private $table = 'users';
 	private $id = 'id';
     

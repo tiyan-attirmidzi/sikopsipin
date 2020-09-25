@@ -41,7 +41,7 @@
         }
     ?>
 
-    <?php if ($jsConfirmDelete != '') { ?>
+    <?php if ($this->uri->segment(2) == 'members') { ?>
         <script>
             $(document).ready(function(){
                 $('.btn-delete').click(function(e){
@@ -68,14 +68,6 @@
                 });
             });
         </script>
-    <?php } ?>
-	
-	<script>
-		// swal("Cancelled", "Your imaginary file is safe :)", "error");
-	</script>
-
-
-    <?php if ($jsConfirmDelete != '') { ?>
         <script>
             $(document).ready(function () {
                 $('#data-table').DataTable({

@@ -6,17 +6,18 @@
 	</a>
 	
     <nav class="navbar navbar-static-top">
-
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs"><?php echo $this->session->userdata("full_name"); ?></span>
+                        <img src="<?php echo base_url(); ?>assets/img/<?= $this->session->userdata("image"); ?>" class="user-image" alt="User Image">
+                        <span class="hidden-xs">
+                            <?php echo $this->session->userdata("name"); ?>
+                        </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="<?php echo base_url(); ?>assets/img/<?= $this->session->userdata("image"); ?>" class="img-circle" alt="User Image">
                             <p>
                                 <?php echo $this->session->userdata("name"); ?>
                                 <small> 

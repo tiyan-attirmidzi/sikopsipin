@@ -4,7 +4,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo base_url(); ?>assets/dashboard/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>assets/img/<?= $this->session->userdata("image"); ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?php echo $this->session->userdata("name"); ?></p>
@@ -24,8 +24,20 @@
 						<i class="fa fa-user"></i> <span>Anggota</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(3)=='request'){echo "active";}?>">
-					<a href="<?php echo base_url('admin/schedules/request'); ?>">
+				<!-- <li class="treeview">
+					<a href="">
+						<i class="fa fa-dashboard"></i> <span>Simpanan</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
+					</a>
+					<ul class="treeview-menu">
+						<li><a href="../../index.html"><i class="fa fa-circle-o"></i> Input Simpanan</a></li>
+						<li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+					</ul>
+				</li> -->
+				<li class="<?php if($this->uri->segment(2)=='savings' && $this->uri->segment(3)==''){echo "active";}?>">
+					<a href="<?php echo base_url('admin/savings'); ?>">
 						<i class="fa fa-money"></i> <span>Simpanan</span>
 					</a>
 				</li>
@@ -41,13 +53,18 @@
 				</li>
 			<?php } else { ?>
 				<li class="<?php if($this->uri->segment(2)==''){echo "active";}?>">
-					<a href="<?php echo base_url('mahasiswa'); ?>">
+					<a href="<?php echo base_url('member'); ?>">
 						<i class="fa fa-dashboard"></i> <span>Beranda</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(2)=='schedules'){echo "active";}?>">
-					<a href="<?php echo base_url('mahasiswa/schedules'); ?>">
-						<i class="fa fa-calendar-check-o"></i> <span>Pengajuan Jadwal</span>
+				<li class="<?php if($this->uri->segment(3)=='request'){echo "active";}?>">
+					<a href="<?php echo base_url('member/'); ?>">
+						<i class="fa fa-money"></i> <span>Simpanan</span>
+					</a>
+				</li>
+				<li class="<?php if($this->uri->segment(2)=='schedules' && $this->uri->segment(3)==''){echo "active";}?>">
+					<a href="<?php echo base_url('member/'); ?>">
+						<i class="fa fa-credit-card"></i> <span>Pinjaman</span>
 					</a>
 				</li>
 			<?php } ?>

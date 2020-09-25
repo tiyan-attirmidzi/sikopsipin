@@ -33,12 +33,11 @@ class Members extends Admin_Controller {
 			'label' => 'primary'
 			]
 		];
-		$data['jsConfirmDelete'] = true;
 		
 		$this->load->view('includes/header');
 		$this->load->view('includes/navbar');
 		$this->load->view('includes/sidebar');
-		$this->load->view('pages/admin/member/content', $data);
+		$this->load->view('pages/admin/members/content', $data);
 		$this->load->view('includes/footer');
 
 	}
@@ -135,7 +134,7 @@ class Members extends Admin_Controller {
 			$this->load->view('includes/header');
 			$this->load->view('includes/navbar');
 			$this->load->view('includes/sidebar');
-			$this->load->view('pages/admin/member/insert', $data);
+			$this->load->view('pages/admin/members/insert', $data);
 			$this->load->view('includes/footer');
 		}
 		
@@ -263,7 +262,7 @@ class Members extends Admin_Controller {
 		$this->load->view('includes/header');
 		$this->load->view('includes/navbar');
 		$this->load->view('includes/sidebar');
-		$this->load->view('pages/admin/member/update', $data);
+		$this->load->view('pages/admin/members/update', $data);
 		$this->load->view('includes/footer');
 
 	}

@@ -46,6 +46,7 @@ class Auths extends Public_Controller {
 
             if (!empty($result) && count($result) > 0)
             {
+                $image = $result->gender == User::MALE ? "male.png" : "female.png";
                 $dataSession = array(
                     'id' => $result->id,
                     'member_id' => $result->uid,
@@ -56,7 +57,8 @@ class Auths extends Public_Controller {
                     'address' => $result->address,
                     'phone' => $result->phone,
 					'role' => $result->role,
-					'joined_since' => $result->joined_since
+                    'joined_since' => $result->joined_since,
+                    'image' => $image
                 );
 
                 $this->session->set_userdata($dataSession);
