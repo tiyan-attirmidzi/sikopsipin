@@ -36,7 +36,7 @@
 						<li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
 					</ul>
 				</li> -->
-				<li class="<?php if($this->uri->segment(2)=='savings' && $this->uri->segment(3)==''){echo "active";}?>">
+				<li class="<?php if($this->uri->segment(2)=='savings' || $this->uri->segment(3)=='member'){echo "active";}?>">
 					<a href="<?php echo base_url('admin/savings'); ?>">
 						<i class="fa fa-money"></i> <span>Simpanan</span>
 					</a>

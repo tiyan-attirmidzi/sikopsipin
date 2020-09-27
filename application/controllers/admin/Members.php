@@ -110,7 +110,7 @@ class Members extends Admin_Controller {
 		// End Validation
 
 		if ($this->form_validation->run() === TRUE) {
-			$data['uid'] = "member-".date('YmdHis');
+			$data['uid'] = date('YmdHis');
             $data['username'] = $this->input->post('username');
             $data['email'] = $this->input->post('email');
             $data['name'] = $this->input->post('name');
@@ -119,9 +119,10 @@ class Members extends Admin_Controller {
             $data['address'] = $this->input->post('address');
             $data['phone'] = $this->input->post('phone');
 			$data['role'] = User::MEMBER_ROLE;
-			$data['joined_since'] = date('Y-m-d H:i:s');;
+			$data['joined_since'] = date('Y-m-d H:i:s');
 			
 			$this->user->insert($data);
+
 			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Anggota baru telah di tambahkan", "false"));
 			
             redirect($this->pageCurrent, 'refresh');

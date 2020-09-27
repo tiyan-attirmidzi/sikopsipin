@@ -154,7 +154,7 @@ class Auths extends Public_Controller {
 		// End Validation
 
 		if ($this->form_validation->run() === TRUE) {
-			$data['uid'] = "member-".date('YmdHis');
+			$data['uid'] = date('YmdHis');
             $data['username'] = $this->input->post('username');
             $data['email'] = $this->input->post('email');
             $data['name'] = $this->input->post('name');

@@ -51,7 +51,7 @@ $lang['form_validation_alpha']			= 'The {field} field may only contain alphabeti
 $lang['form_validation_alpha_numeric']		= 'The {field} field may only contain alpha-numeric characters.';
 $lang['form_validation_alpha_numeric_spaces']	= 'The {field} field may only contain alpha-numeric characters and spaces.';
 $lang['form_validation_alpha_dash']		= 'The {field} field may only contain alpha-numeric characters, underscores, and dashes.';
-$lang['form_validation_numeric']		= 'The {field} field must contain only numbers.';
+$lang['form_validation_numeric']		= '{field} Harus Berisi Angka Saja';
 $lang['form_validation_is_numeric']		= 'The {field} field must contain only numeric characters.';
 $lang['form_validation_integer']		= 'The {field} field must contain an integer.';
 $lang['form_validation_regex_match']		= 'The {field} field is not in the correct format.';
@@ -67,3 +67,5 @@ $lang['form_validation_greater_than']		= 'The {field} field must contain a numbe
 $lang['form_validation_greater_than_equal_to']	= 'The {field} field must contain a number greater than or equal to {param}.';
 $lang['form_validation_error_message_not_set']	= 'Unable to access an error message corresponding to your field name {field}.';
 $lang['form_validation_in_list']		= 'The {field} field must be one of: {param}.';
+
+$lang['form_validation_id_member_available'] = '<b>{field}</b> Tidak Ditemukan';

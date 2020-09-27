@@ -23,7 +23,23 @@ class User extends CI_Model {
     public function getWhere($data) {
         $query = $this->db->where($data)->get($this->table);
         return $query->result();
-	}
+    }
+    
+    public function getMemberWithSaldo($idMember) {
+        $this->db->select($this->table.'.*, savings.saldo, savings.id AS saving_id');
+        $this->db->from($this->table);
+        $this->db->join('savings', 'savings.id_user = '.$this->table.'.id', 'left');
+        $this->db->where($this->table.'.uid', $idMember);
+        $query = $this->db->get();
+        if($query->num_rows() != 0)
+        {
+            return $query->result();
+        }
+        else
+        {
+            return false;
+        }
+    }
 	
 	public function insert($data) {
         $this->db->insert($this->table, $data);
@@ -51,6 +67,13 @@ class User extends CI_Model {
     public function checkUser($username, $password) {
         $this->db->where("email = '$username' OR username = '$username'");
         $this->db->where('password', $password);
+        $query = $this->db->get($this->table);
+        return $query->row();
+    }
+
+    public function idMemberAvailability($idMember)
+    {
+        $this->db->where('uid', $idMember);
         $query = $this->db->get($this->table);
         return $query->row();
     }

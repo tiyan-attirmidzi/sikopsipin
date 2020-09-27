@@ -17,17 +17,20 @@
                     <div class="box-header with-border">
                         <h3 class="box-title"><?php echo $pageTitleSub; ?></h3>
                     </div>
-                    <form role="form">
+                    <?php echo form_open("");?>
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="member_id">Nomor Anggota</label>
-                                <input type="text" class="form-control" id="member_id" placeholder="Masukkan Nomor Anggota">
+                                <input type="text" class="form-control" id="number" name="member_id" placeholder="Masukkan Nomor Anggota" value="<?php echo set_value('member_id'); ?>">
+                                <span class='text-danger'>
+                                    <?php echo form_error('member_id'); ?>
+                                </span>
                             </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Cari</button>
                         </div>
-                    </form>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>
