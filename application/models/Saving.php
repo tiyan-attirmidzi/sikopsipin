@@ -20,6 +20,13 @@ class Saving extends CI_Model {
         return $query->saldo;
     }
 
+    public function countSavingById($id) {
+        $this->db->select_sum('saldo');
+        $this->db->where('id_user', $id);
+        $query = $this->db->get($this->table)->row();
+        return $query->saldo;
+    }
+
     public function getByIdMember($data) {
         $query = $this->db->where($data)->get($this->table);
         return $query->result();

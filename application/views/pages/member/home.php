@@ -14,7 +14,7 @@
             <div class="col-lg-6 col-xs-12">
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3><?php echo $members; ?></h3>
+                        <h3>Rp. <?php echo number_format($saving); ?></h3>
                         <p>Jumlah Simpanan</p>
                     </div>
                     <div class="icon">
@@ -26,7 +26,7 @@
             <div class="col-lg-6 col-xs-12">
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3><?php echo $members; ?></h3>
+                        <h3>Rp. <?php echo number_format($loan); ?></h3>
                         <p>Jumlah Pinjaman</p>
                     </div>
                     <div class="icon">
@@ -38,8 +38,8 @@
             <div class="col-lg-12 col-xs-12">
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3><?php echo $members; ?></h3>
-                        <p>Total Pembayaran</p>
+                        <h3>Rp. <?php echo number_format($paid); ?></h3>
+                        <p>Pinjaman Yang Telah Dibayar</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-dollar"></i>

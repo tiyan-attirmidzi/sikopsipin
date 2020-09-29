@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Loans extends Admin_Controller {
 
 	private $pageCurrent = 'admin/loans';
-	private $pageContent = 'Simpanan';
+	private $pageContent = 'Pinjaman';
 
 	public function __construct() {
         parent::__construct();

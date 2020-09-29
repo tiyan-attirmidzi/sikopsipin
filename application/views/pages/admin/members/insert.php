@@ -5,7 +5,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php echo base_url('admin') ?>"><i class="fa fa-dashboard"></i> Beranda</a></li>
-            <li><a href="<?php echo base_url($pageCurrent) ?>">Anggota</a></li>
+            <li><a href="<?php echo base_url($pageCurrent) ?>"><?php echo $pageContent; ?></a></li>
             <li class="active">Tambah</li>
         </ol>
     </section>

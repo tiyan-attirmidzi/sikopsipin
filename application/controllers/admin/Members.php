@@ -143,7 +143,6 @@ class Members extends Admin_Controller {
 
 	public function update($id = null) {
 
-		
 		// check id
 		if ($id == null) {
 			redirect($this->pageCurrent, 'refresh');

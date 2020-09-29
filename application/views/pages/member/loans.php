@@ -29,45 +29,6 @@
                 <h4>Rp. <?php echo number_format($debt); ?></h4>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-add-loan">Tambah Pinjaman</button>
-            </div>
-        </div><br>
-
-        <!-- Start Modal Add -->
-        <div class="modal fade" id="modal-add-loan">
-            <div class="modal-dialog">
-                <?php echo form_open($pageCurrent.'/addMemberLoan');?>
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Tambah Pinjaman</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="amount">Jumlah (Rp.)</label>
-                                    <input type="text" class="form-control" id="rupiah1" name="amount" placeholder="Masukkan Jumlah (Rp.)" required>
-                                    <input type="hidden" name="member_id" value="<?php echo $member[0]->uid; ?>">
-                                    <input type="hidden" name="id" value="<?php echo $member[0]->id; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="interest">Bunga (%)</label>
-                                    <input type="number" class="form-control" id="interest" name="interest" placeholder="Masukkan Bunga (%)" min="1" max="100" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Tambah</button>
-                        </div>
-                    </div>
-                <?php echo form_close(); ?>
-            </div>
-        </div>
-        <!-- End Modal Add -->
 
         <div class="row">
             <div class="col-md-12">
@@ -112,10 +73,7 @@
 											<span class="label label-<?php echo $statuses[$loan->status]['label']; ?>"><?php echo $statuses[$loan->status]['name']; ?></span>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm btn-info-modal" data-id="<?php echo $loan->id; ?>" data-role="admin">Info</button>
-                                            <?php if ($loan->status == 0) { ?>
-                                                <button type="button" class="btn btn-warning btn-sm btn-pay-modal" data-id="<?php echo $loan->id; ?>">Bayar</button>
-                                            <?php } ?>
+                                            <button type="button" class="btn btn-primary btn-sm btn-info-modal" data-id="<?php echo $loan->id; ?>" data-role="member">Info</button>
                                         </td>
                                     </tr>
                                 <?php $no++; }} else { ?>
@@ -125,9 +83,6 @@
                                 <?php } ?>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="box-footer">
-                        <a href="<?php echo base_url($pageCurrent); ?>" class="btn btn-default">Kembali</a>
                     </div>
                 </div>
             </div>
@@ -153,7 +108,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="loan_detail">
-
+                                
                                 </tbody>
                             </table>
                         </div>
@@ -165,36 +120,6 @@
             </div>
         </div>
         <!-- End Modal Info -->
-
-        <!-- Start Modal Pay -->
-        <div class="modal fade" id="pay-modals">
-            <div class="modal-dialog">
-                <form id="form-pay" method="post" accept-charset="utf-8">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Bayar Pinjaman</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="amount">Jumlah (Rp.)</label>
-                                    <input type="text" class="form-control" id="rupiah2" name="amount" placeholder="Masukkan Jumlah (Rp.)" required>
-                                    <input type="hidden" name="member_id" value="<?php echo $member[0]->uid; ?>">
-                                    <input type="hidden" name="id" value="<?php echo $member[0]->id; ?>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Bayar</button>
-                        </div>
-                    </div>
-                <?php echo form_close(); ?>
-            </div>
-        </div>
-        <!-- End Modal Pay -->
 
     </section>
 </div>

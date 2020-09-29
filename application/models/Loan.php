@@ -19,9 +19,23 @@ class Loan extends CI_Model {
         $query = $this->db->get($this->table)->row();
         return $query->debt;
     }
-
+    
     public function countPaid() {
         $this->db->select_sum('debt_paid');
+        $query = $this->db->get($this->table)->row();
+        return $query->debt_paid;
+    }
+    
+    public function countLoanById($id) {
+        $this->db->select_sum('debt');
+        $this->db->where('id_user', $id);
+        $query = $this->db->get($this->table)->row();
+        return $query->debt;
+    }
+
+    public function countPaidById($id) {
+        $this->db->select_sum('debt_paid');
+        $this->db->where('id_user', $id);
         $query = $this->db->get($this->table)->row();
         return $query->debt_paid;
     }

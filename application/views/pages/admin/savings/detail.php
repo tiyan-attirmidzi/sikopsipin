@@ -5,7 +5,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php echo base_url('admin'); ?>"><i class="fa fa-dashboard"></i> Beranda</a></li>
-            <li class="active"><?= $pageContent ?></li>
+            <li><a href="<?php echo base_url($pageCurrent) ?>"><?php echo $pageContent; ?></a></li>
+            <li class="active"><?= "Detail" ?></li>
         </ol>
     </section>
 
@@ -13,13 +14,13 @@
         <div class="row">
             <div class="col-md-6">
                 <h2><?php echo $member[0]->uid; ?></h2>
-                <div class="mt-2">
+                <div>
                     <h4><strong><?php echo $member[0]->name; ?></strong></h4>
                     <p><?php echo $member[0]->address; ?></p>
                 </div>
             </div>
             <div class="col-md-6">
-                <h2 class="mb-2">Saldo</h2>
+                <h2>Saldo</h2>
                 <h4>Rp. <?php echo number_format($member[0]->saldo); ?></h4>
             </div>
         </div>

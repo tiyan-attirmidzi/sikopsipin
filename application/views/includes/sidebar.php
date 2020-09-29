@@ -40,13 +40,18 @@
 						<i class="fa fa-dashboard"></i> <span>Beranda</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(3)=='request'){echo "active";}?>">
-					<a href="<?php echo base_url('member/'); ?>">
+				<li class="<?php if($this->uri->segment(2)=='profile'){echo "active";}?>">
+					<a href="<?php echo base_url('member/profile'); ?>">
+						<i class="fa fa-user"></i> <span>Profil</span>
+					</a>
+				</li>
+				<li class="<?php if($this->uri->segment(2)=='savings'){echo "active";}?>">
+					<a href="<?php echo base_url('member/savings'); ?>">
 						<i class="fa fa-money"></i> <span>Simpanan</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(2)=='schedules' && $this->uri->segment(3)==''){echo "active";}?>">
-					<a href="<?php echo base_url('member/'); ?>">
+				<li class="<?php if($this->uri->segment(2)=='loans'){echo "active";}?>">
+					<a href="<?php echo base_url('member/loans'); ?>">
 						<i class="fa fa-credit-card"></i> <span>Pinjaman</span>
 					</a>
 				</li>

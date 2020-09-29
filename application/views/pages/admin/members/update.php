@@ -5,8 +5,13 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php echo base_url('admin') ?>"><i class="fa fa-dashboard"></i> Beranda</a></li>
-            <li><a href="<?php echo base_url($pageCurrent) ?>">Anggota</a></li>
-            <li class="active">Tambah</li>
+            <?php if ($this->uri->segment(1)=='admin') { ?>
+                <li><a href="<?php echo base_url($pageCurrent) ?>"><?php echo $pageContent; ?></a></li>
+                <li class="active">Edit</li>
+            <?php } ?>
+            <?php if ($this->uri->segment(1)=='member') { ?>
+                <li class="active"><?php echo $pageContent; ?></li>
+            <?php } ?>
         </ol>
     </section>
 

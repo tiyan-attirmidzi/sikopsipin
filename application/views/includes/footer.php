@@ -2,7 +2,7 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 0.1
             </div>
-            <strong>Copyright &copy; 2020 <a href="#">SIPENUS</a></strong> All rights reserved.
+            <strong>Copyright &copy; 2020 <a href="#">SIKOPSIPIN</a></strong> All rights reserved.
         </footer>
 
         <!-- Add the sidebar's background. This div must be placed
@@ -41,19 +41,21 @@
         }
     ?>
 
-    <?php if ($this->uri->segment(3) == 'member') { ?>
+    <?php if ($this->uri->segment(3) == 'member' || ($this->uri->segment(1) == 'member' && $this->uri->segment(2) == 'loans')) { ?>
         <script>
 
             $(document).ready(function() {
                 $('.btn-info-modal').click(function(e) {
                     e.preventDefault();
                     id = $(this).data('id');
+                    role = $(this).data('role');
+                    url = role + '/loans/show/';
                     $('#info-modals').modal({
                         backdrop: 'static',
                         show: true
                     });
                     $.ajax({
-                        url: "<?php echo base_url('admin/loans/show/'); ?>" + id,
+                        url: "<?php echo base_url(); ?>"+ url + id,
                         type: "GET",
                         dataType : "JSON",
                         success: function(data) {
@@ -114,7 +116,7 @@
         </script>
     <?php } ?>
     
-    <?php if ($this->uri->segment(2) == 'savings' && $this->uri->segment(3) == '') { ?>
+    <?php if ($this->uri->segment(1) == 'admin' && $this->uri->segment(2) == 'savings' && $this->uri->segment(3) == '') { ?>
         <script>
             function setInputFilter(textbox, inputFilter) {
                 ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
