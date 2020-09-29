@@ -65,7 +65,6 @@
                                         <td style="text-align:center">
                                             <button type="button" class="btn btn-success btn-sm" onclick="location.href='<?php echo base_url($pageCurrent.'/update/'.$member->id); ?>'">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm btn-delete">Hapus</button>
-                                            <!-- <a href="<?php echo base_url($pageCurrent.'/delete/'.$member->id); ?>" class="btn btn-danger btn-sm btn-delete">Hapus</a> -->
                                         </td>
                                     </tr>
                                 <?php $no++; } ?>

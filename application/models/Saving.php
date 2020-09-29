@@ -14,14 +14,10 @@ class Saving extends CI_Model {
         parent::__construct();
     }
 
-    public function get() {
-        $query = $this->db->get($this->table);
-        return $query->result();
-    }
-
-    public function getWhere($data) {
-        $query = $this->db->where($data)->get($this->table);
-        return $query->result();
+    public function countSavings() {
+        $this->db->select_sum('saldo');
+        $query = $this->db->get($this->table)->row();
+        return $query->saldo;
     }
 
     public function getByIdMember($data) {
@@ -65,15 +61,6 @@ class Saving extends CI_Model {
         );
         return ($this->db->affected_rows() != 1) ? false : true;
     }
-
-    public function delete($data){
-        $this->db->delete($this->table, $data);
-        return ($this->db->affected_rows() != 1) ? false : true;
-    }
-
-    public function get_total() {
-        return $this->db->count_all($this->table);
-    }	
 
 }
 

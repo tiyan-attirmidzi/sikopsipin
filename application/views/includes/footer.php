@@ -41,7 +41,80 @@
         }
     ?>
 
-    <?php if ($this->uri->segment(2) == 'savings') { ?>
+    <?php if ($this->uri->segment(3) == 'member') { ?>
+        <script>
+
+            $(document).ready(function() {
+                $('.btn-info-modal').click(function(e) {
+                    e.preventDefault();
+                    id = $(this).data('id');
+                    $('#info-modals').modal({
+                        backdrop: 'static',
+                        show: true
+                    });
+                    $.ajax({
+                        url: "<?php echo base_url('admin/loans/show/'); ?>" + id,
+                        type: "GET",
+                        dataType : "JSON",
+                        success: function(data) {
+                            // console.log(data);
+                            let html = '';
+                            let no = 1;
+                            for(let i=0; i < data.length; i++){
+                                html += '<tr>'+
+                                    '<td>'+ no +'</td>'+
+                                    '<td>'+ data[i].time +'</td>'+
+                                    '<td>'+ formatRupiah(data[i].amount, "Rp. ") +'</td>'+
+                                '</tr>';
+                                no++;
+                            }
+                            $('#loan_detail').html(html);
+                        },
+                        error: function(msg) {
+                            console.log("error : " + msg)
+                        }
+                    });
+                });
+                $('.btn-pay-modal').click(function(e) {
+                    e.preventDefault();
+                    idLoan = $(this).data('id');
+                    $('#pay-modals').modal({
+                        backdrop: 'static',
+                        show: true
+                    });
+                    $('#form-pay').attr('action', '<?php echo base_url('admin/loans/payMemberLoan/'); ?>' + idLoan);
+                });
+            });
+
+            let rupiah1 = document.getElementById("rupiah1");
+            let rupiah2 = document.getElementById("rupiah2");
+
+            rupiah1.addEventListener("keyup", function(e) {
+                rupiah1.value = formatRupiah(this.value, "Rp. ");
+            });
+            rupiah2.addEventListener("keyup", function(e) {
+                rupiah2.value = formatRupiah(this.value, "Rp. ");
+            });
+
+            function formatRupiah(angka, prefix) {
+                let number_string = angka.replace(/[^,\d]/g, "").toString(),
+                    split = number_string.split(","),
+                    sisa = split[0].length % 3,
+                    rupiah = split[0].substr(0, sisa),
+                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                if (ribuan) {
+                    separator = sisa ? "." : "";
+                    rupiah += separator + ribuan.join(".");
+                }
+
+                rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+                return prefix == undefined ? rupiah : rupiah ? "Rp. " + rupiah : "";
+            }
+        </script>
+    <?php } ?>
+    
+    <?php if ($this->uri->segment(2) == 'savings' && $this->uri->segment(3) == '') { ?>
         <script>
             function setInputFilter(textbox, inputFilter) {
                 ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
@@ -63,6 +136,11 @@
             setInputFilter(document.getElementById("number"), function(value) {
                 return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 99999999999999); 
             });
+
+            setInputFilter(document.getElementById("interest"), function(value) {
+                return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 100); 
+            });
+
         </script>
     <?php } ?>
     <?php if ($this->uri->segment(2) == 'members') { ?>
@@ -70,7 +148,7 @@
             $(document).ready(function(){
                 $('.btn-delete').click(function(e){
                     e.preventDefault();
-                    var id = $(this).parents("tr").attr("id");
+                    let id = $(this).parents("tr").attr("id");
                     swal({
                         title: 'Anda yakin menghapus?',
                         text: 'Data ini akan dihapus secara permanen',

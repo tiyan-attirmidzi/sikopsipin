@@ -57,7 +57,7 @@ class Savings extends Admin_Controller {
 		$this->load->view('includes/header');
 		$this->load->view('includes/navbar');
 		$this->load->view('includes/sidebar');
-		$this->load->view('pages/admin/savings/content', $data);
+		$this->load->view('pages/admin/form-input', $data);
 		$this->load->view('includes/footer');
 
 	}
@@ -95,18 +95,19 @@ class Savings extends Admin_Controller {
 	}
 
 	public function addMemberSaving() {
+		$amount = preg_replace('/\D/', '', $this->input->post('amount'));
 		$member['id_user'] = $this->input->post('id');
 		$check = $this->saving->getByIdMember($member);
 		if ($check) {
 
 			$saving_id = $this->input->post('saving_id');
 			$saving['id_user'] = $member['id_user'];
-			$saving['saldo'] = $check[0]->saldo + $this->input->post('amount');
+			$saving['saldo'] = $check[0]->saldo + $amount;
 
 			$this->saving->update($saving_id, $saving);
 			
 			$savingDetail['id_saving'] = $saving_id;
-			$savingDetail['amount'] = $this->input->post('amount');
+			$savingDetail['amount'] = $amount;
 			$savingDetail['type'] = Saving::TYPE_ADD;
 			$savingDetail['time'] = date('Y-m-d H:i:s');
 
@@ -117,7 +118,7 @@ class Savings extends Admin_Controller {
 
 		} else {
 			$saving['id_user'] = $member['id_user'];
-			$saving['saldo'] = $this->input->post('amount');
+			$saving['saldo'] = $amount;
 
 			$insertSaving = $this->saving->insert($saving);
 			
@@ -135,7 +136,7 @@ class Savings extends Admin_Controller {
 
 	public function takeMemberSaving() {
 		$member['id_user'] = $this->input->post('id');
-		$amout = $this->input->post('amount');
+		$amout = preg_replace('/\D/', '', $this->input->post('amount'));
 		$check = $this->saving->getByIdMember($member);
 
 		if ($check[0]->saldo < $amout) {
@@ -145,12 +146,12 @@ class Savings extends Admin_Controller {
 
 		$saving_id = $this->input->post('saving_id');
 		$saving['id_user'] = $member['id_user'];
-		$saving['saldo'] = $check[0]->saldo - $this->input->post('amount');
+		$saving['saldo'] = $check[0]->saldo - $amout;
 
 		$this->saving->update($saving_id, $saving);
 		
 		$savingDetail['id_saving'] = $saving_id;
-		$savingDetail['amount'] = $this->input->post('amount');
+		$savingDetail['amount'] = $amout;
 		$savingDetail['type'] = Saving::TYPE_TAKE;
 		$savingDetail['time'] = date('Y-m-d H:i:s');
 

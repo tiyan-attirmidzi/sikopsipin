@@ -24,31 +24,14 @@
 						<i class="fa fa-user"></i> <span>Anggota</span>
 					</a>
 				</li>
-				<!-- <li class="treeview">
-					<a href="">
-						<i class="fa fa-dashboard"></i> <span>Simpanan</span>
-						<span class="pull-right-container">
-							<i class="fa fa-angle-left pull-right"></i>
-						</span>
-					</a>
-					<ul class="treeview-menu">
-						<li><a href="../../index.html"><i class="fa fa-circle-o"></i> Input Simpanan</a></li>
-						<li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-					</ul>
-				</li> -->
-				<li class="<?php if($this->uri->segment(2)=='savings' || $this->uri->segment(3)=='member'){echo "active";}?>">
+				<li class="<?php if($this->uri->segment(2)=='savings' || $this->uri->segment(2)=='savings' && $this->uri->segment(3)=='member'){echo "active";}?>">
 					<a href="<?php echo base_url('admin/savings'); ?>">
 						<i class="fa fa-money"></i> <span>Simpanan</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(2)=='schedules' && $this->uri->segment(3)==''){echo "active";}?>">
-					<a href="<?php echo base_url('admin/schedules'); ?>">
+				<li class="<?php if($this->uri->segment(2)=='loans' || $this->uri->segment(2)=='loans' && $this->uri->segment(3)=='member'){echo "active";}?>">
+					<a href="<?php echo base_url('admin/loans'); ?>">
 						<i class="fa fa-credit-card"></i> <span>Pinjaman</span>
-					</a>
-				</li>
-				<li class="<?php if($this->uri->segment(3)=='history'){echo "active";}?>">
-					<a href="<?php echo base_url('admin/schedule/history'); ?>">
-						<i class="fa fa-dollar"></i> <span>Pembayaran</span>
 					</a>
 				</li>
 			<?php } else { ?>

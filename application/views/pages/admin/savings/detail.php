@@ -47,7 +47,7 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="amount">Jumlah (Rp.)</label>
-                                    <input type="text" class="form-control" id="number" name="amount" placeholder="Masukkan Jumlah (Rp.)" required>
+                                    <input type="text" class="form-control" id="rupiah1" name="amount" placeholder="Masukkan Jumlah (Rp.)" required>
                                     <input type="hidden" name="member_id" value="<?php echo $member[0]->uid; ?>">
                                     <input type="hidden" name="id" value="<?php echo $member[0]->id; ?>">
                                     <input type="hidden" name="saving_id" value="<?php echo $member[0]->saving_id; ?>">
@@ -78,7 +78,7 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="amount">Jumlah (Rp.)</label>
-                                    <input type="text" class="form-control" id="number" name="amount" placeholder="Masukkan Jumlah (Rp.)" required>
+                                    <input type="text" class="form-control" id="rupiah2" name="amount" placeholder="Masukkan Jumlah (Rp.)" required>
                                     <input type="hidden" name="member_id" value="<?php echo $member[0]->uid; ?>">
                                     <input type="hidden" name="id" value="<?php echo $member[0]->id; ?>">
                                     <input type="hidden" name="saving_id" value="<?php echo $member[0]->saving_id; ?>">
@@ -139,7 +139,8 @@
                         </table>
                     </div>
                     <div class="box-footer">
-                        <a href="javascript:window.history.go(-1);" class="btn btn-default">Kembali</a>
+                        <a href="<?php echo base_url($pageCurrent); ?>" class="btn btn-default">Kembali</a>
+                        <!-- <a href="javascript:window.history.go(-1);" class="btn btn-default">Kembali</a> -->
                     </div>
                 </div>
             </div>

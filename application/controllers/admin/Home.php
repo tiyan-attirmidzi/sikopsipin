@@ -8,6 +8,8 @@ class Home extends Admin_Controller {
         $this->load->model(
             array(
                 'user',
+                'saving',
+                'loan',
             )
         );
     }
@@ -16,6 +18,9 @@ class Home extends Admin_Controller {
 
 		$member['role'] = User::MEMBER_ROLE;
 		$data['members'] = count($this->user->getWhere($member));
+		$data['savings'] = $this->saving->countSavings();
+		$data['loans'] = $this->loan->countLoans();
+		$data['paid'] = $this->loan->countPaid();
 
 		$this->load->view('includes/header');
 		$this->load->view('includes/navbar');
