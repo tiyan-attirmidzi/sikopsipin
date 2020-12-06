@@ -85,6 +85,20 @@ class Savings extends Admin_Controller {
 				'label' => 'danger'
 			]
 		];
+		$data['kinds'] = [
+			[
+				'name' => 'Pokok',
+				'label' => 'warning'
+			],
+			[
+				'name' => 'Sukarela',
+				'label' => 'success'
+			],
+			[
+				'name' => 'Wajib',
+				'label' => 'default'
+			]
+		];
 
 		$this->load->view('includes/header');
 		$this->load->view('includes/navbar');
@@ -103,12 +117,13 @@ class Savings extends Admin_Controller {
 			$saving_id = $this->input->post('saving_id');
 			$saving['id_user'] = $member['id_user'];
 			$saving['saldo'] = $check[0]->saldo + $amount;
-
+			
 			$this->saving->update($saving_id, $saving);
 			
 			$savingDetail['id_saving'] = $saving_id;
 			$savingDetail['amount'] = $amount;
 			$savingDetail['type'] = Saving::TYPE_ADD;
+			$savingDetail['kind'] = $this->input->post('savings_type');
 			$savingDetail['time'] = date('Y-m-d H:i:s');
 
 			$this->saving->insertDetail($savingDetail);
@@ -125,6 +140,7 @@ class Savings extends Admin_Controller {
 			$savingDetail['id_saving'] = $insertSaving;
 			$savingDetail['amount'] = $saving['saldo'];
 			$savingDetail['type'] = Saving::TYPE_ADD;
+			$savingDetail['kind'] = $this->input->post('savings_type');
 			$savingDetail['time'] = date('Y-m-d H:i:s');
 
 			$this->saving->insertDetail($savingDetail);

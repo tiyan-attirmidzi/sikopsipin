@@ -18,6 +18,7 @@ class Members extends Admin_Controller {
 	public function index()	{
 
 		$member['role'] = User::MEMBER_ROLE;
+		$member['active'] = User::MEMBER_ACTIVE;
 		$data['pageCurrent'] = $this->pageCurrent;
 		$data['pageTitle'] = 'Manajemen Data Anggota';
 		$data['pageTitleSub'] = 'Data Anggota';
@@ -38,6 +39,33 @@ class Members extends Admin_Controller {
 		$this->load->view('includes/navbar');
 		$this->load->view('includes/sidebar');
 		$this->load->view('pages/admin/members/content', $data);
+		$this->load->view('includes/footer');
+
+	}
+
+	public function new()	{
+
+		$member['active'] = User::MEMBER_INACTIVE;
+		$data['pageCurrent'] = $this->pageCurrent;
+		$data['pageTitle'] = 'Manajemen Data Anggota Baru';
+		$data['pageTitleSub'] = 'Data Anggota Baru';
+		$data['pageContent'] = $this->pageContent;
+		$data['members'] = $this->user->getWhere($member);
+		$data['genders'] = [
+		[
+			'name' => 'Laki-laki',
+			'label' => 'warning'
+		],
+		[
+			'name' => 'Perempuan',
+			'label' => 'primary'
+			]
+		];
+		
+		$this->load->view('includes/header');
+		$this->load->view('includes/navbar');
+		$this->load->view('includes/sidebar');
+		$this->load->view('pages/admin/members/new', $data);
 		$this->load->view('includes/footer');
 
 	}
@@ -234,17 +262,60 @@ class Members extends Admin_Controller {
 			}
 
 			if ($this->form_validation->run() === TRUE) {
-				$input['username'] = $this->input->post('username');
-				$input['email'] = $this->input->post('email');
-				$input['name'] = $this->input->post('name');
-				$input['gender'] = $this->input->post('gender');
-				$input['address'] = $this->input->post('address');
-				$input['phone'] = $this->input->post('phone');
-				
-				if ($this->user->update($id, $input)) {
-					$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah diperbarui", "false"));
-					redirect($this->pageCurrent, 'refresh');
-				}
+
+				if ($_FILES['userfile']['name']) {
+
+                    $filename = date('YmdHis');
+                    $config['upload_path'] = './assets/uploads/';
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $config['overwrite'] = "true";
+                    $config['max_size'] = "2048";
+                    $config['file_name'] = $this->input->post('username').'-'.$filename;	
+        
+                    $this->load->library('upload', $config);
+                    
+                    if(!$this->upload->do_upload()) {
+        
+                        $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "ERROR!", $this->upload->display_errors(), "false"));
+                        redirect($this->pageCurrent, 'refresh');
+        
+                    } else {
+
+                        $file_upload = $this->upload->data();
+                        $input['username'] = $this->input->post('username');
+                        $input['email'] = $this->input->post('email');
+                        $input['name'] = $this->input->post('name');
+                        $input['gender'] = $this->input->post('gender');
+                        $input['address'] = $this->input->post('address');
+                        $input['phone'] = $this->input->post('phone');
+                        $input['image'] = $file_upload['file_name'];
+
+
+                        $fileImage = $this->input->post('old_image');
+                        $pathFile = './assets/uploads/';
+                        unlink($pathFile.$fileImage);
+                        
+                        if ($this->user->update($id, $input)) {
+                            $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah diperbarui", "false"));
+                        	redirect($this->pageCurrent, 'refresh');
+                        }
+
+                    }
+                } else {
+                    
+                    $input['username'] = $this->input->post('username');
+                    $input['email'] = $this->input->post('email');
+                    $input['name'] = $this->input->post('name');
+                    $input['gender'] = $this->input->post('gender');
+                    $input['address'] = $this->input->post('address');
+                    $input['phone'] = $this->input->post('phone');
+
+                    if ($this->user->update($id, $input)) {
+                        $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah diperbarui", "false"));
+                        redirect($this->pageCurrent, 'refresh');
+                    }
+
+                }
 
 			} else {
 				$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Gagal!", "Data yang diinputkan tidak valid", "false"));
@@ -282,6 +353,24 @@ class Members extends Admin_Controller {
 			redirect($this->pageCurrent, 'refresh');
 		} else {
 			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Gagal!", "Data tidak dapat dihapus", "false"));
+			redirect($this->pageCurrent, 'refresh');
+		}
+		
+
+	}
+
+	public function confirm($id) {		// check id
+		if ($id == null) {
+			redirect($this->pageCurrent, 'refresh');
+		}
+
+		$member['active'] = User::MEMBER_ACTIVE;
+		
+		if ($this->user->update($id, $member)) {
+			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Akun telah diaktifkan", "false"));
+			redirect($this->pageCurrent, 'refresh');
+		} else {
+			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Gagal!", "Akun tidak berhasil diaktifkan", "false"));
 			redirect($this->pageCurrent, 'refresh');
 		}
 		

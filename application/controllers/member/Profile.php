@@ -105,18 +105,64 @@ class Profile extends Member_Controller {
             }
 
             if ($this->form_validation->run() === TRUE) {
-                $input['username'] = $this->input->post('username');
-                $input['email'] = $this->input->post('email');
-                $input['name'] = $this->input->post('name');
-                $input['gender'] = $this->input->post('gender');
-                $input['address'] = $this->input->post('address');
-                $input['phone'] = $this->input->post('phone');
-                
-                if ($this->user->update($id, $input)) {
-                    $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah diperbarui", "false"));
-                    redirect($this->pageCurrent, 'refresh');
-                }
 
+                if ($_FILES['userfile']['name']) {
+
+                    $filename                               = date('YmdHis');
+                    $config['upload_path']          		= './assets/uploads/';
+                    $config['allowed_types']        		= 'gif|jpg|png|jpeg';
+                    $config['overwrite']                    = "true";
+                    $config['max_size']                     = "2048";
+                    $config['file_name']                    = $this->input->post('username').'-'.$filename;	
+        
+                    $this->load->library('upload', $config);
+                    
+                    if(!$this->upload->do_upload()) {
+        
+                        $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "ERROR!", $this->upload->display_errors(), "false"));
+                        redirect($this->pageCurrent, 'refresh');
+        
+                    } else {
+
+                        $file_upload = $this->upload->data();
+                        $input['username'] = $this->input->post('username');
+                        $input['email'] = $this->input->post('email');
+                        $input['name'] = $this->input->post('name');
+                        $input['gender'] = $this->input->post('gender');
+                        $input['address'] = $this->input->post('address');
+                        $input['phone'] = $this->input->post('phone');
+                        $input['image'] = $file_upload['file_name'];
+
+
+                        $fileImage = $this->input->post('old_image');
+                        $pathFile = './assets/uploads/';
+                        unlink($pathFile.$fileImage);
+                        
+                        if ($this->user->update($id, $input)) {
+                            echo "
+                                <script language='javascript'>
+                                    alert('Perhatian! Mohon Login/Masuk ulang ke Dashboard Anda');
+                                </script>
+                            ";
+                            redirect('logout', 'refresh');
+                        }
+
+                    }
+                } else {
+                    
+                    $input['username'] = $this->input->post('username');
+                    $input['email'] = $this->input->post('email');
+                    $input['name'] = $this->input->post('name');
+                    $input['gender'] = $this->input->post('gender');
+                    $input['address'] = $this->input->post('address');
+                    $input['phone'] = $this->input->post('phone');
+
+                    if ($this->user->update($id, $input)) {
+                        $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah diperbarui", "false"));
+                        redirect($this->pageCurrent, 'refresh');
+                    }
+
+                }
             } else {
                 $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Gagal!", "Data yang diinputkan tidak valid", "false"));
             }

@@ -46,6 +46,11 @@ class Auths extends Public_Controller {
 
             if (!empty($result) && count($result) > 0)
             {
+                if ($result->active == 0) {
+				    $this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Login Gagal!", "Akun anda belum dikonfirmasi oleh Admin, silahkan menunggu", "false"));
+                    redirect('/');
+                }
+
                 $image = $result->gender == User::MALE ? "male.png" : "female.png";
                 $dataSession = array(
                     'id' => $result->id,
@@ -58,7 +63,8 @@ class Auths extends Public_Controller {
                     'phone' => $result->phone,
 					'role' => $result->role,
                     'joined_since' => $result->joined_since,
-                    'image' => $image
+                    'active' => $result->active,
+                    'image' => $result->image ? $result->image : $image
                 );
 
                 $this->session->set_userdata($dataSession);
@@ -151,23 +157,56 @@ class Auths extends Public_Controller {
                 'matches' => '*) <b>Password</b> Tidak Valid'
             )
         );
+        if (empty($_FILES['userfile']['name']))
+        {
+            $this->form_validation->set_rules(
+                'userfile', 
+                'Foto', 
+                'required',
+                array(
+                    'required' => '*) Masukkan <b>Foto</b>'
+                )
+            );
+        }
 		// End Validation
 
 		if ($this->form_validation->run() === TRUE) {
-			$data['uid'] = date('YmdHis');
-            $data['username'] = $this->input->post('username');
-            $data['email'] = $this->input->post('email');
-            $data['name'] = $this->input->post('name');
-            $data['password'] = sha1(md5($this->input->post('password')));
-            $data['gender'] = $this->input->post('gender');
-            $data['address'] = $this->input->post('address');
-            $data['phone'] = $this->input->post('phone');
-			$data['role'] = User::MEMBER_ROLE;
-			$data['joined_since'] = date('Y-m-d H:i:s');;
-			
-			$this->user->insert($data);
-            $this->session->set_flashdata('alert', $this->alert->set_alert(Alert::SUCCESS, "Registrasi Berhasil, Silahkan Masuk"));
-            redirect('/', 'refresh');
+
+            $filename                               = date('YmdHis');
+            $config['upload_path']          		= './assets/uploads/';
+            $config['allowed_types']        		= 'gif|jpg|png|jpeg';
+            $config['overwrite']                    = "true";
+            $config['max_size']                     = "2048";
+            $config['file_name']                    = $this->input->post('username').'-'.$filename;	
+
+            $this->load->library('upload', $config);
+            
+            if(!$this->upload->do_upload()) {
+
+				$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "ERROR!", $this->upload->display_errors(), "false"));
+                redirect('registration', 'refresh');
+
+            } else {
+
+                $file_upload = $this->upload->data();
+                $data['uid'] = date('YmdHis');
+                $data['username'] = $this->input->post('username');
+                $data['email'] = $this->input->post('email');
+                $data['name'] = $this->input->post('name');
+                $data['password'] = sha1(md5($this->input->post('password')));
+                $data['gender'] = $this->input->post('gender');
+                $data['address'] = $this->input->post('address');
+                $data['phone'] = $this->input->post('phone');
+                $data['role'] = User::MEMBER_ROLE;
+                $data['joined_since'] = date('Y-m-d H:i:s');
+                $data['image'] = $file_upload['file_name'];
+                
+                $this->user->insert($data);
+				$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Registrasi Berhasil!", "Silahkan Masuk", "false"));
+                redirect('/', 'refresh');
+
+            }
+
 		} else {
 			$this->load->view('includes/auth/header');
 			$this->load->view('pages/auth/registration');

@@ -4,7 +4,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo base_url(); ?>assets/img/<?= $this->session->userdata("image"); ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>assets/uploads/<?php echo $this->session->userdata("image"); ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?php echo $this->session->userdata("name"); ?></p>
@@ -19,10 +19,24 @@
 						<i class="fa fa-dashboard"></i> <span>Beranda</span>
 					</a>
 				</li>
-				<li class="<?php if($this->uri->segment(2)=='members'){echo "active";}?>">
-					<a href="<?php echo base_url('admin/members'); ?>">
-						<i class="fa fa-user"></i> <span>Anggota</span>
+				<li class="treeview <?php if($this->uri->segment(2)=='members'){ echo "active"; }?>">
+					<a href="#">
+						<i class="fa fa-user"></i>
+						<span>Anggota</span>
+						<span class="pull-right-container">
+							<i class="fa fa-angle-left pull-right"></i>
+						</span>
 					</a>
+					<ul class="treeview-menu">
+						<li class="<?php if($this->uri->segment(3)=='new'){ echo "active"; }?>">
+							<a href="<?php echo base_url('admin/members/new'); ?>">
+							<i class="fa fa-circle-o"></i> Baru</a>
+						</li>
+						<li class="<?php if($this->uri->segment(2)=='members' && $this->uri->segment(3)==''){ echo "active"; }?>">
+							<a href="<?php echo base_url('admin/members'); ?>">
+							<i class="fa fa-circle-o"></i> Aktif</a>
+						</li>
+					</ul>
 				</li>
 				<li class="<?php if($this->uri->segment(2)=='savings' || $this->uri->segment(2)=='savings' && $this->uri->segment(3)=='member'){echo "active";}?>">
 					<a href="<?php echo base_url('admin/savings'); ?>">

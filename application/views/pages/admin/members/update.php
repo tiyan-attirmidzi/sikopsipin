@@ -33,6 +33,9 @@
                                 }
                             ?>
 
+                            <div class="col-md-12">
+                                <img src="<?php echo base_url(); ?>assets/uploads/<?php echo $member[0]->image; ?>" class="img-resposive center" width="20%" alt="Image User"><br> 
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Nama Lengkap</label>
@@ -112,14 +115,22 @@
                                     <span class="help-block"><i>Apabila tidak ingin mengganti password cukup kosongkan form <b>Password Baru</b> dan <b>Ulangi Password</b></i></span>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="image">Ganti Foto</label>
+                                    <input type="file" id="image" class="form-control" name="userfile">
+                                    <input type="hidden" name="old_image" value="<?php echo $member[0]->image; ?>">
+                                    <span class='text-danger'>
+                                        <?php echo form_error('userfile'); ?>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-
                         <div class="box-footer">
                             <a href="javascript:window.history.go(-1);" class="btn btn-default">Kembali</a>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     <?php echo form_close(); ?>
-
                 </div>
             </div>
         </div>

@@ -55,7 +55,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="interest">Bunga (%)</label>
-                                    <input type="number" class="form-control" id="interest" name="interest" placeholder="Masukkan Bunga (%)" min="1" max="100" required>
+                                    <input type="number" class="form-control" id="interest" name="interest" placeholder="Masukkan Bunga (%)" min="1" max="100" value="1" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount_month">Jumlah Bulan</label>
+                                    <input type="number" class="form-control" id="amount_month" name="amount_month" placeholder="Masukkan Masukkan Jumlah Bulan" min="1" max="100" required>
                                 </div>
                             </div>
                         </div>
@@ -94,6 +98,7 @@
 									<th>Total Pembayaran</th>
 									<th>Terbayar</th>
 									<th>Sisa</th>
+									<th>Jumlah Bulan</th>
                                     <th>Status</th>
                                     <th>Pilihan</th>
                                 </tr>
@@ -108,6 +113,7 @@
                                         <td>Rp. <?php echo number_format($loan->debt_total); ?></td>
                                         <td>Rp. <?php echo number_format($loan->debt_paid); ?></td>
                                         <td>Rp. <?php echo number_format($loan->debt_total - $loan->debt_paid); ?></td>
+                                        <td><?php echo $loan->amount_month; ?></td>
                                         <td>
 											<span class="label label-<?php echo $statuses[$loan->status]['label']; ?>"><?php echo $statuses[$loan->status]['name']; ?></span>
                                         </td>
@@ -120,7 +126,7 @@
                                     </tr>
                                 <?php $no++; }} else { ?>
                                     <tr>
-                                        <td colspan="9" class="text-center">Tidak Ditemukan Data</td>
+                                        <td colspan="10" class="text-center">Tidak Ditemukan Data</td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

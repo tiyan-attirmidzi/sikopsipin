@@ -35,7 +35,21 @@ class Savings extends Member_Controller {
 				'name' => 'Tarik',
 				'label' => 'danger'
 			]
-        ];
+		];
+		$data['kinds'] = [
+			[
+				'name' => 'Pokok',
+				'label' => 'warning'
+			],
+			[
+				'name' => 'Sukarela',
+				'label' => 'success'
+			],
+			[
+				'name' => 'Wajib',
+				'label' => 'default'
+			]
+		];
         
 		$this->load->view('includes/header');
 		$this->load->view('includes/navbar');

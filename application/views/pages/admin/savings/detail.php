@@ -53,6 +53,14 @@
                                     <input type="hidden" name="id" value="<?php echo $member[0]->id; ?>">
                                     <input type="hidden" name="saving_id" value="<?php echo $member[0]->saving_id; ?>">
                                 </div>
+                                <div class="form-group">
+                                    <label for="savings_type">Jenis Pinjaman</label>
+                                    <select class="form-control" id="savings_type" name="savings_type">
+                                        <option value="0">Pokok</option>
+                                        <option value="1">Sukarela</option>
+                                        <option value="2">Wajib</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -118,6 +126,7 @@
                                     <th>Tanggal</th>
 									<th>Jumlah</th>
                                     <th>Jenis</th>
+                                    <th>Tipe Simpanan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,6 +138,9 @@
                                         <td>Rp. <?php echo number_format($saving->amount); ?></td>
                                         <td>
 											<span class="label label-<?php echo $types[$saving->type]['label']; ?>"><?php echo $types[$saving->type]['name']; ?></span>
+                                        </td>
+                                        <td>
+											<span class="label label-<?php echo $kinds[$saving->kind]['label']; ?>"><?php echo $kinds[$saving->kind]['name']; ?></span>
                                         </td>
                                     </tr>
                                 <?php $no++; }} else { ?>

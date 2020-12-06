@@ -7,6 +7,8 @@ class User extends CI_Model {
     const MEMBER_ROLE = 2;
     const MALE = 0;
     const FEMALE = 1;
+    const MEMBER_INACTIVE = 0;
+    const MEMBER_ACTIVE = 1;
     private $table = 'users';
 	private $id = 'id';
     

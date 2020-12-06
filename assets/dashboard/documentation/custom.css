@@ -8,3 +8,6 @@ div.btn-saving {
 	margin-bottom: 5px;
 }
 
+.login-box, .register-box {
+    margin: 2% auto;
+}

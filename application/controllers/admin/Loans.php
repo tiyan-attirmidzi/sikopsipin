@@ -117,6 +117,7 @@ class Loans extends Admin_Controller {
 		$loan['debt_total'] = $loan['debt'] + ($amount * ($interest/100));
 		$loan['status'] = Loan::STATUS_NOT_FINISH;
 		$loan['time'] = date('Y-m-d H:i:s');
+		$loan['amount_month'] = $this->input->post('amount_month');
 
 		$this->loan->insert($loan);
 

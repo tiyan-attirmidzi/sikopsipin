@@ -149,25 +149,47 @@
         <script>
             $(document).ready(function(){
                 $('.btn-delete').click(function(e){
-                    e.preventDefault();
+                    // e.preventDefault();
                     let id = $(this).parents("tr").attr("id");
                     swal({
                         title: 'Anda yakin menghapus?',
                         text: 'Data ini akan dihapus secara permanen',
                         icon: 'warning',
                         buttons: ["Batal", "Ya"],
-                    }).then(function (e) {
-                        $.ajax({
-                            type: "DELETE",
-                            url: "<?php echo base_url($pageCurrent."/delete/"); ?>" + id,
-                            data: {id:id},
-                            success: function (data) {
-                                location.reload();
-                            },
-                            error: function (e) {
-                                // console.log(e);
-                            }
-                        });
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: "<?php echo base_url($pageCurrent."/delete/"); ?>" + id,
+                                success: function (data) {
+                                    location.reload();
+                                },
+                                error: function (e) {
+                                    console.log(e);
+                                }
+                            });
+                        }
+                    });
+                });
+                $('.btn-confirm').click(function(e){
+                    // e.preventDefault();
+                    let id = $(this).parents("tr").attr("id");
+                    swal({
+                        title: 'Anda akan mengaktifkan?',
+                        text: 'Akun ini akan diaktifkan',
+                        icon: 'warning',
+                        buttons: ["Batal", "Ya"],
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: "<?php echo base_url($pageCurrent."/confirm/"); ?>" + id,
+                                success: function (data) {
+                                    location.reload();
+                                },
+                                error: function (e) {
+                                    console.log(e);
+                                }
+                            });
+                        }
                     });
                 });
             });

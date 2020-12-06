@@ -1,4 +1,4 @@
-			<?php echo form_open("");?>
+			<?php echo form_open_multipart("");?>
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" placeholder="Nama Lengkap" name="name" value="<?php echo set_value('name'); ?>">
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -56,6 +56,14 @@
 					<span class="glyphicon glyphicon-log-in form-control-feedback"></span>
 					<span class='text-danger'>
                         <?php echo form_error('password-confirm'); ?>
+                    </span>
+				</div>
+				<div class="form-group has-feedback">
+					<label for="userfile">Foto</label>
+					<input type="file" id="userfile" class="form-control" name="userfile">
+					<p class="help-block">File Foto <b>Maksimal</b> 2 MB</p>
+					<span class='text-danger'>
+                        <?php echo form_error('userfile'); ?>
                     </span>
 				</div>
 				<div class="text-child">
