@@ -10,7 +10,9 @@ class Profile extends Member_Controller {
         parent::__construct();
         $this->load->model(
             array(
-                'user'
+                'user',
+                'loan',
+                'saving'
             )
         );
     }
@@ -181,5 +183,47 @@ class Profile extends Member_Controller {
         $this->load->view('pages/admin/members/update', $data);
         $this->load->view('includes/footer');
 
+    }
+
+    public function print()
+    {
+        $id = $this->session->userdata("id");
+
+        $user['id_user'] = $id;
+        $member['id'] = $user['id_user'];
+		$data['member'] = $this->user->getWhere($member);
+		$data['loans'] = $this->loan->getWhere($user);
+        $data['debt'] = $this->loan->countDebtTotal($user['id_user']) - $this->loan->countDebtpaid($user['id_user']);
+        $data['savings'] = $this->saving->getSavingsOfMembers($user['id_user']);
+		$data['statuses'] = [
+			[
+				'name' => 'Belum Lunas'
+			],
+			[
+				'name' => 'Lunas'
+			]
+        ];
+        $data['types'] = [
+			[
+				'name' => 'Setor'
+			],
+			[
+				'name' => 'Tarik'
+			]
+		];
+		$data['kinds'] = [
+			[
+				'name' => 'Pokok'
+			],
+			[
+				'name' => 'Sukarela'
+			],
+			[
+				'name' => 'Wajib'
+			]
+        ];
+        
+        $this->load->library('f_pdf');
+        $this->load->view('pages/member/print', $data);
     }
 }

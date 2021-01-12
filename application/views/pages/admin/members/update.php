@@ -22,6 +22,15 @@
 
                     <div class="box-header with-border">
                         <h3 class="box-title"><?php echo $pageTitleSub; ?></h3>
+                        <?php if ($this->uri->segment(1) == 'member') { ?>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm hidden-sm hidden-xs" style="width: 70px;">
+                                    <div class="input-group-btn" style="padding-left: 15px;">
+                                        <a target="_blank" type="button" class="btn btn-primary" href="<?php echo base_url($pageCurrent); ?>/print"><i class="fa fa-print"></i> Cetak</a>
+                                    </div>
+                                </div>                            
+                            </div>
+                        <?php } ?>
                     </div>
 
                     <?php echo form_open_multipart("");?>

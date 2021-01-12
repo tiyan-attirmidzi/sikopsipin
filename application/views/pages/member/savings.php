@@ -65,7 +65,7 @@
                                     </tr>
                                 <?php $no++; }} else { ?>
                                     <tr>
-                                        <td colspan="4" class="text-center">Tidak Ditemukan Data</td>
+                                        <td colspan="5" class="text-center">Tidak Ditemukan Data</td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
