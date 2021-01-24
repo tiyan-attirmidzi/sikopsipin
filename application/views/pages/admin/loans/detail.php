@@ -105,7 +105,7 @@
                             </thead>
                             <tbody>
                                 <?php if($loans) { $no = 1; foreach ($loans as $loan) { ?>
-                                    <tr>
+                                    <tr id="<?php echo $loan->id; ?>">
                                         <td><?php echo $no; ?></td>
                                         <td><?php echo $loan->time; ?></td>
                                         <td>Rp. <?php echo number_format($loan->debt); ?></td>
@@ -122,6 +122,7 @@
                                             <?php if ($loan->status == 0) { ?>
                                                 <button type="button" class="btn btn-warning btn-sm btn-pay-modal" data-id="<?php echo $loan->id; ?>">Bayar</button>
                                             <?php } ?>
+                                            <button type="button" class="btn btn-danger btn-sm btn-delete">Hapus</button>
                                         </td>
                                     </tr>
                                 <?php $no++; }} else { ?>

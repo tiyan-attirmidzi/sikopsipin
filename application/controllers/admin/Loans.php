@@ -157,5 +157,29 @@ class Loans extends Admin_Controller {
 		$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Pinjaman Telah Dibayar", "false"));
 		redirect($this->pageCurrent.'/member/'.$idMember, 'refresh');
 	}
+
+	public function delete($id) {
+
+		// check id
+		if ($id == null) {
+			redirect($this->pageCurrent, 'refresh');
+		}
+		
+		$loan['id'] = $id;
+		$loanPays['id_loan'] = $loan['id'];
+		$dataLoan = $this->loan->getWhere($loan);
+
+		$deleteLoan = $this->loan->delete($loan);
+		$deleteLoanPays = $this->loan->deletePays($loanPays);
+		
+		if ($deleteLoan || $deleteLoanPays) {
+			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah dihapus", "false"));
+			redirect($this->pageCurrent, 'refresh');
+		} else {
+			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Gagal!", "Data tidak dapat dihapus", "false"));
+			redirect($this->pageCurrent, 'refresh');
+		}
+
+	}
     
 }

@@ -177,5 +177,39 @@ class Savings extends Admin_Controller {
 		redirect($this->pageCurrent.'/member/'.$this->input->post('member_id'), 'refresh');
 
 	}
+
+	public function delete($id) {
+
+		// check id
+		if ($id == null) {
+			redirect($this->pageCurrent, 'refresh');
+		}
+		
+		$savingDetail['id'] = $id;
+		$dataSavingDetail = $this->saving->getWhereDetail($savingDetail);
+
+		$saving['id'] = $dataSavingDetail[0]->id_saving;
+		$dataSaving = $this->saving->getWhere($saving);
+
+		$saving_id = $dataSaving[0]->id;
+		// $saving['id_user'] = $member['id_user'];
+		$saving['saldo'] = $dataSaving[0]->saldo - $dataSavingDetail[0]->amount;
+				
+		$this->saving->update($saving_id, $saving);
+
+		if($saving['saldo'] == 0) {
+			$this->saving->deleteSaving($saving);
+		}
+		$delete = $this->saving->delete($savingDetail);
+		
+		if ($delete) {
+			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Data telah dihapus", "false"));
+			redirect($this->pageCurrent, 'refresh');
+		} else {
+			$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::ERROR, "Gagal!", "Data tidak dapat dihapus", "false"));
+			redirect($this->pageCurrent, 'refresh');
+		}
+
+	}
     
 }

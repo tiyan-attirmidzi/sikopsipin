@@ -14,6 +14,16 @@ class Saving extends CI_Model {
         parent::__construct();
     }
 
+    public function getWhere($data) {
+        $query = $this->db->where($data)->get($this->table);
+        return $query->result();
+    }
+
+    public function getWhereDetail($data) {
+        $query = $this->db->where($data)->get($this->tableDetail);
+        return $query->result();
+    }
+
     public function countSavings() {
         $this->db->select_sum('saldo');
         $query = $this->db->get($this->table)->row();
@@ -66,6 +76,16 @@ class Saving extends CI_Model {
         $query = $this->db->where('id', $id)->update(
           $this->table, $data
         );
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+    public function deleteSaving($data){
+        $this->db->delete($this->table, $data);
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+    public function delete($data){
+        $this->db->delete($this->tableDetail, $data);
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 

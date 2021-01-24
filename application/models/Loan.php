@@ -82,6 +82,16 @@ class Loan extends CI_Model {
         return ($this->db->affected_rows() != 1) ? false : true;
     }
 
+    public function delete($data){
+        $this->db->delete($this->table, $data);
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+    public function deletePays($data){
+        $this->db->delete($this->tablePays, $data);
+        return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
 }
 
 ?>

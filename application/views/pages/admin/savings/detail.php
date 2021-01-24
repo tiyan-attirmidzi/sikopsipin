@@ -127,12 +127,13 @@
 									<th>Jumlah</th>
                                     <th>Jenis</th>
                                     <th>Tipe Simpanan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php  ?>
                                 <?php if($savings) { $no = 1; foreach ($savings as $saving) { ?>
-                                    <tr>
+                                    <tr id="<?php echo $saving->id; ?>">
                                         <td><?php echo $no; ?></td>
                                         <td><?php echo $saving->time; ?></td>
                                         <td>Rp. <?php echo number_format($saving->amount); ?></td>
@@ -141,6 +142,9 @@
                                         </td>
                                         <td>
 											<span class="label label-<?php echo $kinds[$saving->kind]['label']; ?>"><?php echo $kinds[$saving->kind]['name']; ?></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm btn-delete">Hapus</button>
                                         </td>
                                     </tr>
                                 <?php $no++; }} else { ?>

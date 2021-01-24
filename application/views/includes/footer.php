@@ -145,7 +145,7 @@
 
         </script>
     <?php } ?>
-    <?php if ($this->uri->segment(2) == 'members') { ?>
+    <?php if ($this->uri->segment(2) == 'members' || $this->uri->segment(2) == 'savings' || $this->uri->segment(2) == 'loans') { ?>
         <script>
             $(document).ready(function(){
                 $('.btn-delete').click(function(e){
