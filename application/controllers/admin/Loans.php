@@ -116,6 +116,7 @@ class Loans extends Admin_Controller {
 		$loan['debt_interest'] = $amount * ($interest/100);
 		$loan['debt_total'] = $loan['debt'] + ($amount * ($interest/100));
 		$loan['status'] = Loan::STATUS_NOT_FINISH;
+		$loan['verified'] = Loan::VERIFIED_NOT;
 		$loan['time'] = date('Y-m-d H:i:s');
 		$loan['amount_month'] = $this->input->post('amount_month');
 
@@ -124,6 +125,21 @@ class Loans extends Admin_Controller {
 		$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Pinjaman Telah Ditambahkan", "false"));
 		redirect($this->pageCurrent.'/member/'.$idMember, 'refresh');
 
+	}
+
+	public function loanVerification($id) {
+		// check id
+		if ($id == null) {
+			redirect($this->pageCurrent, 'refresh');
+		}
+		
+		$dataLoan['id'] = $id;
+		$loan['verified'] = Loan::VERIFIED_HAS_BEEN;
+
+		$this->loan->update($dataLoan['id'], $loan);
+
+		$this->session->set_flashdata('alertSweet', $this->alert->sweetAlert(Alert::SUCCESS, "Berhasil!", "Pinjaman Telah Terverifikasi", "false"));
+		redirect($this->pageCurrent.'/member/'.$idMember, 'refresh');
 	}
 
 	public function payMemberLoan($id = null) {

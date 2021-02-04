@@ -192,6 +192,28 @@
                         }
                     });
                 });
+                $('.btn-verified').click(function(e){
+                    // e.preventDefault();
+                    let id = $(this).parents("tr").attr("id");
+                    swal({
+                        title: 'Anda akan memverifikasi?',
+                        text: 'Pinjaman ini akan diverifikasi',
+                        icon: 'warning',
+                        buttons: ["Batal", "Ya"],
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: "<?php echo base_url($pageCurrent."/loanVerification/"); ?>" + id,
+                                success: function (data) {
+                                    location.reload();
+                                },
+                                error: function (e) {
+                                    console.log(e);
+                                }
+                            });
+                        }
+                    });
+                });
             });
         </script>
         <script>

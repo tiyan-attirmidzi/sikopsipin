@@ -100,6 +100,7 @@
 									<th>Sisa</th>
 									<th>Jumlah Bulan</th>
                                     <th>Status</th>
+                                    <th>Legalitas</th>
                                     <th>Pilihan</th>
                                 </tr>
                             </thead>
@@ -118,11 +119,22 @@
 											<span class="label label-<?php echo $statuses[$loan->status]['label']; ?>"><?php echo $statuses[$loan->status]['name']; ?></span>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm btn-info-modal" data-id="<?php echo $loan->id; ?>" data-role="admin">Info</button>
-                                            <?php if ($loan->status == 0) { ?>
-                                                <button type="button" class="btn btn-warning btn-sm btn-pay-modal" data-id="<?php echo $loan->id; ?>">Bayar</button>
+                                            <?php if ($loan->verified == 0) { ?>
+                                                <button type="button" class="btn btn-success btn-sm btn-verified">Verifikasi</button>
+                                            <?php } else { ?>
+                                                <button class="btn btn-success btn-sm" disabled>Telah Terverifikasi</button>
                                             <?php } ?>
-                                            <button type="button" class="btn btn-danger btn-sm btn-delete">Hapus</button>
+                                        </td>
+                                        <td>
+                                            <?php if ($loan->verified == 0) { ?>
+											    <span class="label label-warning">Pinjaman Belum Diverifikasi</span>
+                                            <?php } else { ?>
+                                                <button type="button" class="btn btn-primary btn-sm btn-info-modal" data-id="<?php echo $loan->id; ?>" data-role="admin">Info</button>
+                                                <?php if ($loan->status == 0) { ?>
+                                                    <button type="button" class="btn btn-warning btn-sm btn-pay-modal" data-id="<?php echo $loan->id; ?>">Bayar</button>
+                                                <?php } ?>
+                                                <button type="button" class="btn btn-danger btn-sm btn-delete">Hapus</button>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                 <?php $no++; }} else { ?>

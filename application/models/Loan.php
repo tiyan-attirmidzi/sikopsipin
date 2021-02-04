@@ -5,6 +5,8 @@ class Loan extends CI_Model {
 
 	const STATUS_NOT_FINISH = 0;
     const STATUS_FINISH = 1;
+    const VERIFIED_NOT = 0;
+    const VERIFIED_HAS_BEEN = 1;
     private $table = 'loans';
     private $tablePays = 'loan_pays';
 	private $id = 'id';
